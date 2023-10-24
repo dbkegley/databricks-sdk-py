@@ -752,7 +752,9 @@ class Config:
             prefix = f'{self.host}/oidc/accounts/{self.account_id}'
             return OidcEndpoints(authorization_endpoint=f'{prefix}/v1/authorize',
                                  token_endpoint=f'{prefix}/v1/token')
-        oidc = f'{self.host}/oidc/.well-known/oauth-authorization-server'
+        #oidc = f'{self.host}/oidc/.well-known/oauth-authorization-server'
+        oidc = f'{self.host}/realms/databricks/.well-known/openid-configuration'
+
         res = requests.get(oidc)
         if res.status_code != 200:
             return None
